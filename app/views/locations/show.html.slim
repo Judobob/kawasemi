@@ -1,0 +1,39 @@
+p#notice = notice
+
+p
+  strong Name:
+  = @location.name
+p
+  strong Description:
+  = @location.description
+p
+  strong Address 1:
+  = @location.address_1
+p
+  strong Adddress 2:
+  = @location.adddress_2
+p
+  strong City:
+  = @location.city
+p
+  strong County:
+  = @location.county
+p
+  strong Postcode:
+  = @location.postcode
+p
+  strong Country:
+  = @location.country_id
+p
+  strong Telephone:
+  = @location.telephone
+p
+  strong Website:
+  = @location.website
+p
+  strong Email:
+  = @location.email
+
+= link_to 'Edit', edit_location_path(@location)
+'|
+= link_to 'Back', locations_path

@@ -1,0 +1,15 @@
+p#notice = notice
+
+p
+  strong Start time:
+  = @event_time.start_time
+p
+  strong End time:
+  = @event_time.end_time
+p
+  strong Max participants:
+  = @event_time.max_participants
+
+= link_to 'Edit', edit_event_time_path(@event_time)
+'|
+= link_to 'Back', event_times_path

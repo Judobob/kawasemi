@@ -1,0 +1,36 @@
+p#notice = notice
+
+p
+  strong First name:
+  = @user_profile.first_name
+p
+  strong Second name:
+  = @user_profile.second_name
+p
+  strong Address 1:
+  = @user_profile.address_1
+p
+  strong Adddress 2:
+  = @user_profile.adddress_2
+p
+  strong City:
+  = @user_profile.city
+p
+  strong County:
+  = @user_profile.county
+p
+  strong Postcode:
+  = @user_profile.postcode
+p
+  strong Country:
+  = @user_profile.country_id
+p
+  strong Telephone:
+  = @user_profile.telephone
+p
+  strong Email:
+  = @user_profile.email
+
+= link_to 'Edit', edit_user_profile_path(@user_profile)
+'|
+= link_to 'Back', user_profiles_path
