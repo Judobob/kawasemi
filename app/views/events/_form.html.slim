@@ -2,8 +2,17 @@
   = f.error_notification
 
   .form-inputs
-    = f.input :name
-    = f.input :description
-
-  .form-actions
-    = f.button :submit
+    .row
+      .form-group
+        = f.label :name, class: "col-sm-2 control-label"
+        .col-sm-6
+          = f.input_field :name, class: "form-control"
+    .row
+      .form-group
+        = f.label :description, class: "col-sm-2 control-label"
+        .col-sm-6
+          = f.input_field :description, as: :text, class: "form-control"
+    .row
+      .form-group
+        .col-sm-offset-2.col-sm-6
+          = f.submit "Submit", class: "btn btn-primary"

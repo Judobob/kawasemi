@@ -40,6 +40,6 @@ class EventTimesController < ApplicationController
     end
 
     def event_time_params
-      params.require(:event_time).permit(:start_time, :end_time, :max_participants)
+      params.require(:event_time).permit(:start_time, :end_time, :max_participants,:event_id)
     end
 end

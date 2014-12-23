@@ -1,3 +1,4 @@
 class Event < ActiveRecord::Base
-  belongs_to :event_time
+  has_many :event_times
+  validates_presence_of :name,:description
 end
