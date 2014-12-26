@@ -51,3 +51,8 @@ gem 'rolify'
 
 #forms
 gem "nested_form"
+
+#file uploads
+gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
+#wysywig
+gem 'ckeditor', github: 'galetahub/ckeditor'

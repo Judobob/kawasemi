@@ -12,7 +12,7 @@ ul.errors
       .form-group
         = f.label :description, class: "col-sm-2 control-label"
         .col-sm-6
-          = f.input_field :description, as: :text, class: "form-control"
+          = f.cktext_area :description, class: "form-control"
         .error_message_2
     .row
       .form-group

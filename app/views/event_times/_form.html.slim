@@ -5,6 +5,7 @@
     .events
       = render partial: 'events/dropdown', locals: { f: f }
       = link_to "New Event", new_event_path , remote:true ,  data: { toggle: "modal", target: "#ajax-modal" }
+      #event_description
     = f.input :start_time
     = f.input :end_time
     = f.input :max_participants

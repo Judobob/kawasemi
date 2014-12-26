@@ -1,3 +1,21 @@
+GIT
+  remote: git://github.com/galetahub/ckeditor.git
+  revision: d0bc44a6fc9fa67d4b007877688f89e5a0cbf79f
+  specs:
+    ckeditor (4.1.1)
+      cocaine
+      orm_adapter (~> 0.5.0)
+
+GIT
+  remote: git://github.com/thoughtbot/paperclip.git
+  revision: 0e39d750f2fed89f3bafbb5a819810e1fc26e126
+  specs:
+    paperclip (4.2.1)
+      activemodel (>= 3.0.0)
+      activesupport (>= 3.0.0)
+      cocaine (~> 0.5.5)
+      mime-types
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -35,6 +53,10 @@ GEM
       sass (~> 3.2)
     builder (3.2.2)
     cancan (1.6.10)
+    climate_control (0.0.3)
+      activesupport (>= 3.0)
+    cocaine (0.5.5)
+      climate_control (>= 0.0.3, < 1.0)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.0)
@@ -156,6 +178,7 @@ DEPENDENCIES
   autoprefixer-rails
   bootstrap-sass (~> 3.2.0)
   cancan
+  ckeditor!
   coffee-rails (~> 4.0.0)
   country_select
   devise
@@ -164,6 +187,7 @@ DEPENDENCIES
   jquery-turbolinks
   mysql2
   nested_form
+  paperclip!
   rails (= 4.1.6)
   rolify
   sass-rails (~> 4.0.3)

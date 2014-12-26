@@ -5,6 +5,7 @@ $("ul.errors").html("")
   <% end %>
 <% else %> 
   $("#event_time_event_id").append('<option value="<%= @event.id %>"><%= @event.name %></option>');
+  $("div#event_description").append("<%= escape_javascript(@event.description.html_safe) %>");
   $('[id=event_time_event_id]').val( "<%= @event.id %>" )
   $("#ajax-modal").modal('hide')
   
