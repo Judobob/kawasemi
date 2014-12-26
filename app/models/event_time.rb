@@ -1,5 +1,5 @@
 class EventTime < ActiveRecord::Base
-  belongs_to :events, :foreign_key => "event_id"
+  belongs_to :event, :foreign_key => "event_id"
   has_many :location_events
   has_many :locations, through: :location_events
   has_many :excercise_events

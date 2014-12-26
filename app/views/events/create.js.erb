@@ -1,0 +1,11 @@
+$("ul.errors").html("")
+<% if @event.errors.any? %>
+  <% @event.errors.full_messages.each do |message| %>
+    $("ul.errors").append($("<li />").html("<%= message.html_safe %>"))
+  <% end %>
+<% else %> 
+  $("#event_time_event_id").append('<option value="<%= @event.id %>"><%= @event.name %></option>');
+  $('[id=event_time_event_id]').val( "<%= @event.id %>" )
+  $("#ajax-modal").modal('hide')
+  
+<% end %>

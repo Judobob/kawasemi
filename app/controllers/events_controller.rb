@@ -12,8 +12,12 @@ class EventsController < ApplicationController
   end
 
   def new
+    
     @event = Event.new
-    respond_with(@event)
+    respond_to do |format|
+      format.html { redirect_to root_path } #for my controller, i wanted it to be JS only
+      format.js
+    end
   end
 
   def edit
@@ -21,8 +25,18 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
-    @event.save
-    respond_with(@event)
+    if @event.save
+      respond_to do |format|
+        format.html { redirect_to root_path } #for my controller, i wanted it to be JS only
+        format.js
+      end
+    else
+    @event.errors.full_messages
+    respond_to do |format|
+        format.html { redirect_to root_path } #for my controller, i wanted it to be JS only
+        format.js
+      end
+    end  
   end
 
   def update

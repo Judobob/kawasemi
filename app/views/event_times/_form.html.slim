@@ -1,6 +1,10 @@
 = simple_form_for(@event_time) do |f|
   = f.error_notification
-  .form-inputs      
+ 
+  .form-inputs
+    .events
+      = render partial: 'events/dropdown', locals: { f: f }
+      = link_to "New Event", new_event_path , remote:true ,  data: { toggle: "modal", target: "#ajax-modal" }
     = f.input :start_time
     = f.input :end_time
     = f.input :max_participants

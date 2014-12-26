@@ -14,6 +14,7 @@
 ActiveRecord::Schema.define(version: 20141221224802) do
 
   create_table "event_times", force: true do |t|
+    t.integer "event_id"
     t.datetime "start_time"
     t.datetime "end_time"
     t.integer  "max_participants"
