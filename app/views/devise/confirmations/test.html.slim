@@ -1,14 +1,13 @@
-h2
-  | Forgot your password?
-= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: 'form-horizontal' }) do |f|
-  = devise_error_messages!
-  .form-group
-    = f.label :email, class: "col-sm-2 control-label"
-    .col-sm-6
-      = f.email_field :email, autofocus: true, class: "form-control"
-  .form-group
-    .col-sm-6.col-sm-offset-2
-      = f.submit "Send me reset password instructions", class: "btn btn-primary"
-  .form-group
-    .col-sm-6.col-sm-offset-2
-      = render "users/shared/links"
+p.navbar-text.pull-right
+  - if user_signed_in?
+    |  Logged in as 
+    strong
+      = current_user.email
+    | . 
+    = link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link'
+    |  | 
+    = link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'
+  - else
+    = link_to "Sign up", new_user_registration_path, :class => 'navbar-link'
+    |  | 
+    = link_to "Login", new_user_session_path, :class => 'navbar-link'

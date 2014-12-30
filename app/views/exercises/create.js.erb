@@ -1,0 +1,10 @@
+$("ul.errors").html("")
+<% if @exercise.errors.any? %>
+  <% @exercise.errors.full_messages.each do |message| %>
+    $("ul.errors").append($("<li/>").html("<%= message.html_safe %>"))
+  <% end %>
+<% else %> 
+  $(".exercise_list").append('<option value="<%= @exercise.id %>"><%= @exercise.name %></option>');
+  $('.selectpicker').selectpicker('refresh');
+  $("#ajax-modal").modal('hide') 
+<% end %>

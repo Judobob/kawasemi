@@ -19,8 +19,27 @@ class EventTimesController < ApplicationController
   end
 
   def create
-    @event_time = EventTime.new(event_time_params)
+    
+    #get the parameters
+    new_event_params=event_time_params
+    
+    #manipulate the dates for db storage
+    new_event_params[:start_time] = DateTime.strptime(new_event_params[:start_time],'%m/%d/%Y %I:%M %p')
+    new_event_params[:end_time] = DateTime.strptime(new_event_params[:end_time],'%m/%d/%Y %I:%M %p')
+    
+    #create new event
+    @event_time = EventTime.new(new_event_params)
+    
+    #create new exercises if they exist
+    if new_event_params[:exercise_events_attributes]..present?
+      new_event_params[:exercise_events_attributes].each do |exercise|
+        @event_time.exercise_events.build(:exercise_id => exercise[1][:exercise_id])
+      end
+    end
+    
+    #save the event
     @event_time.save
+    
     respond_with(@event_time)
   end
 
@@ -40,6 +59,6 @@ class EventTimesController < ApplicationController
     end
 
     def event_time_params
-      params.require(:event_time).permit(:start_time, :end_time, :max_participants,:event_id)
+      params.require(:event_time).permit(:start_time, :end_time, :max_participants,:event_id, exercise_events_attributes: [ :exercise_id,:_destroy])
     end
 end

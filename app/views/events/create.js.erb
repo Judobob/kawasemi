@@ -1,12 +1,13 @@
 $("ul.errors").html("")
 <% if @event.errors.any? %>
   <% @event.errors.full_messages.each do |message| %>
-    $("ul.errors").append($("<li />").html("<%= message.html_safe %>"))
+    $("ul.errors").append($("<li/>").html("<%= message.html_safe %>"))
   <% end %>
 <% else %> 
   $("#event_time_event_id").append('<option value="<%= @event.id %>"><%= @event.name %></option>');
   $("div#event_description").append("<%= escape_javascript(@event.description.html_safe) %>");
   $('[id=event_time_event_id]').val( "<%= @event.id %>" )
+  $('.selectpicker').selectpicker('refresh');
   $("#ajax-modal").modal('hide')
   
 <% end %>

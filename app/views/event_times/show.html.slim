@@ -1,15 +1,27 @@
-p#notice = notice
+.container
+  p#notice = notice  
+  h3= @event_time.event.name
+  .row
+    h4= "Start time:"
+    = @event_time.start_time.to_formatted_s(:long)
+  .row
+    h4= "End time:"
+    = @event_time.end_time.to_formatted_s(:long)
+  .row
+    h4= "Max participants:"
+    = @event_time.max_participants
+  .row
+    h4= "Description:"
+    row
+    = @event_time.event.description
+  .row
+    h4= "Exercises:"
+    - @event_time.exercises.each do |exercise|
+      .row
+      = exercise.name
+      
 
-p
-  strong Start time:
-  = @event_time.start_time
-p
-  strong End time:
-  = @event_time.end_time
-p
-  strong Max participants:
-  = @event_time.max_participants
-
-= link_to 'Edit', edit_event_time_path(@event_time)
-'|
-= link_to 'Back', event_times_path
+  
+  = link_to 'Edit', edit_event_time_path(@event_time)
+  '|
+  = link_to 'Back', event_times_path

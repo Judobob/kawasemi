@@ -1,0 +1,26 @@
+//colors
+$white: #ffffff;
+$color_pippin_approx: #ffdddd;
+$color_nebula_approx: #ccdddd;
+
+.modal-header{
+  background: $color_nebula_approx;
+}
+.modal-body {
+  background: $white;
+}
+.modal-footer {
+  background: $color_nebula_approx;
+}
+
+
+.brand {
+  float:left;
+}
+.nav {
+  float:left;
+}
+.navbar-text
+{
+  float:right;
+}

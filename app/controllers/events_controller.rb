@@ -26,17 +26,16 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(event_params)
     if @event.save
-      respond_to do |format|
-        format.html { redirect_to root_path } #for my controller, i wanted it to be JS only
-        format.js
-      end
+    #passed  
     else
+    #errors
     @event.errors.full_messages
+   
+    end
     respond_to do |format|
         format.html { redirect_to root_path } #for my controller, i wanted it to be JS only
         format.js
-      end
-    end  
+      end  
   end
 
   def update

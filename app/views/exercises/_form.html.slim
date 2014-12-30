@@ -1,9 +1,19 @@
-= simple_form_for(@exercise) do |f|
+ul.errors
+= simple_form_for(@exercise , :remote => true) do |f|
   = f.error_notification
 
   .form-inputs
-    = f.input :name
-    = f.input :description
-
-  .form-actions
-    = f.button :submit
+    .row
+      .form-group
+        = f.label :name, class: "col-sm-2 control-label"
+        .col-sm-6
+           = f.input_field :name, class: "form-control"
+    .row
+      .form-group
+        = f.label :description, class: "col-sm-2 control-label"
+        .col-sm-6
+          = f.cktext_area :description, class: "form-control"
+    .row
+      .form-group
+        .col-sm-offset-2.col-sm-6
+          = f.submit "Submit", class: "btn btn-primary"

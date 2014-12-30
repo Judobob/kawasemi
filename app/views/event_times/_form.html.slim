@@ -1,14 +1,44 @@
-= simple_form_for(@event_time) do |f|
+ul.errors
+= simple_nested_form_for(@event_time) do |f|
   = f.error_notification
- 
   .form-inputs
     .events
-      = render partial: 'events/dropdown', locals: { f: f }
-      = link_to "New Event", new_event_path , remote:true ,  data: { toggle: "modal", target: "#ajax-modal" }
-      #event_description
-    = f.input :start_time
-    = f.input :end_time
-    = f.input :max_participants
-
-  .form-actions
-    = f.button :submit
+    .row  
+      .form-group
+        = f.label :event_id, class: "col-sm-2 control-label"
+        .col-sm-6
+           = f.collection_select :event_id, Event.all, :id, :name,{}, {class: "selectpicker"}
+           javascript:
+             $('.selectpicker').selectpicker('refresh');
+           = link_to "New Event", new_event_path , remote:true ,  data: { toggle: "modal", target: "#ajax-modal" }, class:"btn btn-default"
+           #event_description
+    .row
+      .form-group
+          = f.label :start_time, class: "col-sm-2 control-label"
+          .col-sm-6
+            = f.input_field :start_time, as: :date_time_picker
+    .row
+      .form-group
+          = f.label :end_time, class: "col-sm-2 control-label"
+          .col-sm-6
+            = f.input_field :end_time, as: :date_time_picker, class: "form-control"
+    .row
+      .form-group
+          = f.label :max_participants, class: "col-sm-2 control-label"
+          .col-sm-6
+            = f.input_field :max_participants, class: "form-control bfh-number" , min: '0'
+    .row
+      .form-group
+        .col-sm-2
+        .col-sm-6
+          = f.simple_fields_for :exercise_events do |et|
+           = et.collection_select :exercise_id, Exercise.all, :id, :name,{}, {class: "selectpicker exercise_list"}
+           = link_to "New Exercise", new_exercise_path , remote:true ,  data: { toggle: "modal", target: "#ajax-modal" }, class:"btn btn-default"
+           = et.link_to_remove "Remove Exercise", class:"btn btn-default"
+           javascript:
+             $('.selectpicker').selectpicker('refresh');
+          = f.link_to_add "Add Exercise", :exercise_events, class:"btn btn-default"
+    .row
+      .form-actions
+        .col-sm-offset-2.col-sm-6
+          = f.button :submit, 'Create'

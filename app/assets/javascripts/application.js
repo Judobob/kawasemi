@@ -18,4 +18,9 @@
 //= require jquery_nested_form
 //= require ckeditor/init
 //= require ckeditor_ajax
+//= require moment
+//= require bootstrap-datetimepicker
+//= require bootstrap-select
+//= require bootstrap/alert
+//= require bootstrap/dropdown
 //= require_tree .

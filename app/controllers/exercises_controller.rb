@@ -13,7 +13,10 @@ class ExercisesController < ApplicationController
 
   def new
     @exercise = Exercise.new
-    respond_with(@exercise)
+    respond_to do |format|
+      format.html { redirect_to root_path } #for my controller, i wanted it to be JS only
+      format.js
+    end
   end
 
   def edit
@@ -21,8 +24,17 @@ class ExercisesController < ApplicationController
 
   def create
     @exercise = Exercise.new(exercise_params)
-    @exercise.save
-    respond_with(@exercise)
+    if @exercise.save
+    #passed  
+    else
+    #errors
+    @exercise.errors.full_messages
+   
+    end
+    respond_to do |format|
+        format.html { redirect_to root_path } #for my controller, i wanted it to be JS only
+        format.js
+      end  
   end
 
   def update

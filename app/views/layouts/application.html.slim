@@ -6,11 +6,10 @@ html
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   body
+    = render 'shared/nav_bar'
     = render 'shared/modal'
     p.notice = notice
     p.alert = alert
-    .masthead
-      h1.muted Kawasemi
     .container
       = yield
     
