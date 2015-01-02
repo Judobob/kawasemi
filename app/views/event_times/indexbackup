@@ -1,0 +1,26 @@
+h1 Listing event_times
+
+table
+  thead
+    tr
+      th Start time
+      th End time
+      th Max participants
+      th
+      th
+      th
+
+  tbody
+    - @event_times.each do |event_time|
+      tr
+        td = event_time.start_time
+        td = event_time.end_time
+        td = event_time.max_participants
+        td = link_to 'Show', event_time
+        td = link_to 'Edit', edit_event_time_path(event_time)
+        td = link_to 'Destroy', event_time, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Event time', new_event_time_path
+

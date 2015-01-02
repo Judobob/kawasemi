@@ -8,6 +8,7 @@ class EventTime < ActiveRecord::Base
   has_many :users, through: :user_event_times
   
   accepts_nested_attributes_for :event
+  accepts_nested_attributes_for :users
   accepts_nested_attributes_for :exercise_events,:reject_if => lambda { |a| a[:content].blank? }, :allow_destroy => true
   
 end

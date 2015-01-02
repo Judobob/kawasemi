@@ -2,7 +2,46 @@ class EventTimesController < ApplicationController
   before_action :set_event_time, only: [:show, :edit, :update, :destroy]
   respond_to :html, :xml, :json
   def index
-    @event_times = EventTime.all
+    #get this weeks date or the date required
+    if params.has_key?(:start_date)
+      begin
+        start_date = Date.parse(params[:start_date])
+        
+      rescue ArgumentError
+        start_date=Date.current()
+        
+      end 
+    else  
+      start_date=Date.current()
+    end
+    start_date = start_date.beginning_of_week()
+    #get last date
+    end_date=start_date.to_time.advance(:weeks => 1).to_date
+    @end_date=end_date
+    #get previous date
+    previous_date=start_date.to_time.advance(:weeks => -1).to_date
+    @previous_date=previous_date
+    #get first date from db and check if next tabs available
+    first_record=EventTime.order('start_time DESC').last
+    first_date=first_record.start_time.to_date
+    if previous_date>=first_date
+      @previous_link=0
+    else
+      @previous_link=1
+    end
+    #get last date from db and check if next tab is available
+    last_record=EventTime.order('start_time DESC').first
+    final_date=last_record.start_time.to_date
+    if end_date<=final_date
+      
+      @next_link=0
+    else
+      @next_link=1
+    end
+    @start_date=start_date
+    @event_times = EventTime.where(:start_time => start_date...end_date).order('start_time')
+    @event_days = @event_times.group_by{|day| day.start_time.beginning_of_day}
+    puts @event_days
     respond_with(@event_times)
   end
 

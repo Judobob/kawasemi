@@ -1,25 +1,46 @@
-h1 Listing event_times
-
-table
-  thead
-    tr
-      th Start time
-      th End time
-      th Max participants
-      th
-      th
-      th
-
-  tbody
-    - @event_times.each do |event_time|
-      tr
-        td = event_time.start_time
-        td = event_time.end_time
-        td = event_time.max_participants
-        td = link_to 'Show', event_time
-        td = link_to 'Edit', edit_event_time_path(event_time)
-        td = link_to 'Destroy', event_time, data: {:confirm => 'Are you sure?'}, :method => :delete
-
-br
-
+h3 = 'Classes for week beginning ' + @start_date.strftime("%A #{@start_date.day.ordinalize} %B %Y")
+- @event_days.each do |event_day|
+  .panel.panel-default
+    .panel-heading
+      .event_day
+        h3 = event_day[0].strftime("%A #{event_day[0].day.ordinalize} of %B")
+    - event_day[1].each do |event_time|
+      .event_container
+        .panel.panel-default
+          .panel-heading
+            h4 = event_time.event.name
+          .event_image  
+          .event_details
+             ul
+               li ="Start Time: " + event_time.start_time.strftime("%l:%M %p")
+               li ="End Time: " + event_time.end_time.strftime("%l:%M %p")
+               li ="Places: " + (event_time.max_participants - event_time.user_event_times.count).to_s
+               - if event_time.user_event_times.where(user_id: current_user.id).count ==0  
+                 - if event_time.max_participants > event_time.user_event_times.where(user_id: current_user.id).count
+                   li = simple_form_for(UserEventTime.new) do |f|
+                        = f.hidden_field :event_time_id, :value => event_time.id
+                        = f.button :submit, 'Join Class', class: "btn btn-info"
+                 - else
+                   li = simple_form_for(UserEventTime.new) do |f|
+                        = f.hidden_field :event_time_id, :value => event_time.id
+                        = f.button :submit, 'Full Class', class: "btn btn-info"    
+               - else  
+                 li = link_to 'Leave Class',user_event_time_path(id: event_time.user_event_times.where(user_id: current_user.id).first), data: {:confirm => 'Lazy Bones!'}, :method => :delete,class: "btn btn-success"
+        
+          .event_management
+            ul
+              - event_time.user_event_times.each do |attendee|
+                li = attendee.id
+            .edit_event = link_to 'Edit', edit_event_time_path(event_time),class: "btn btn-primary" 
+          .panel-footer.clearfix 
+             .show_event.pull-right = link_to 'Show', event_time,class: "btn btn-primary" 
+.event_pagination 
+  - if @previous_link == 0
+    .previous_link =  link_to '< Previous week',event_times_path(:start_date => @previous_date),class: "btn btn-success"
+  - else  
+    .previous_link = ''
+  - if @next_link == 0
+    .next_link =  link_to 'Next week >>',event_times_path(:start_date => @end_date),class: "btn btn-success"
+  - else  
+    .next_link = ''
 = link_to 'New Event time', new_event_time_path
