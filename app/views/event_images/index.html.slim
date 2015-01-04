@@ -1,0 +1,27 @@
+h1 Listing event_images
+
+table
+  thead
+    tr
+      th Alt text
+      th Description
+      th Event image
+      th Event image Thumb
+      th
+      th
+      th
+
+  tbody
+    - @event_images.each do |event_image|
+      tr
+        td = event_image.alt_text
+        td = event_image.description
+        td = event_image.event_image
+        td = event_image.event_image_thumb
+        td = link_to 'Show', event_image
+        td = link_to 'Edit', edit_event_image_path(event_image)
+        td = link_to 'Destroy', event_image, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Event image', new_event_image_path

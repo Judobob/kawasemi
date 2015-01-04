@@ -3,15 +3,25 @@ ul.errors
   = f.error_notification
   .form-inputs
     .events
-    .row  
-      .form-group
-        = f.label :event_id, class: "col-sm-2 control-label"
-        .col-sm-6
-           = f.collection_select :event_id, Event.all, :id, :name,{}, {class: "selectpicker"}
+     .row  
+       .form-group
+         = f.label 'Class', class: "col-sm-2 control-label"
+         .col-sm-6
+           = f.collection_select :event_id, Event.all, :id, :name,{}, {class: "selectpicker" }
            javascript:
              $('.selectpicker').selectpicker('refresh');
            = link_to "New Event", new_event_path , remote:true ,  data: { toggle: "modal", target: "#ajax-modal" }, class:"btn btn-default"
            #event_description
+     .row
+      .form-group
+        = f.label 'Class Image', class: "col-sm-2 control-label"
+        .col-sm-6
+          = f.simple_fields_for :exercise_time_image do |eti|
+           = eti.select :event_id,options_from_collection_for_select_with_attributes(EventImage.all, 'id', 'alt_text', 'data-img-src', 'event_image',  :id)
+           javascript:
+            $("select").imagepicker()
+             
+           = link_to "New Image", new_event_image_path , remote:true ,  data: { toggle: "modal", target: "#ajax-modal" }, class:"btn btn-default"
     .row
       .form-group
           = f.label :start_time, class: "col-sm-2 control-label"

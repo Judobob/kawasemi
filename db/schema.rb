@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141226144833) do
+ActiveRecord::Schema.define(version: 20150103222056) do
 
   create_table "ckeditor_assets", force: true do |t|
     t.string   "data_file_name",               null: false
@@ -28,6 +28,28 @@ ActiveRecord::Schema.define(version: 20141226144833) do
 
   add_index "ckeditor_assets", ["assetable_type", "assetable_id"], name: "idx_ckeditor_assetable", using: :btree
   add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type", using: :btree
+
+  create_table "event_images", force: true do |t|
+    t.string   "alt_text"
+    t.string   "description"
+    t.string   "event_image_file_name"
+    t.string   "event_image_content_type"
+    t.integer  "event_image_file_size"
+    t.datetime "event_image_updated_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "event_image_thumb_file_name"
+    t.string   "event_image_thumb_content_type"
+    t.integer  "event_image_thumb_file_size"
+    t.datetime "event_image_thumb_updated_at"
+  end
+
+  create_table "event_time_images", force: true do |t|
+    t.integer  "event_image_id"
+    t.integer  "event_time_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "event_times", force: true do |t|
     t.integer  "event_id"

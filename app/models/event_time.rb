@@ -2,6 +2,8 @@ class EventTime < ActiveRecord::Base
   belongs_to :event, :foreign_key => "event_id"
   has_many :location_events
   has_many :locations, through: :location_events
+  has_many :event_time_images
+  has_many :event_images, through: :event_time_images
   has_many :exercise_events, :dependent => :destroy
   has_many :exercises, through: :exercise_events
   has_many :user_event_times

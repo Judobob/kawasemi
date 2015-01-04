@@ -1,0 +1,15 @@
+p#notice = notice
+
+p
+  strong Alt text:
+  = @event_image.alt_text
+p
+  strong Description:
+  = @event_image.description
+p
+  strong Event image:
+  = @event_image.event_image
+
+= link_to 'Edit', edit_event_image_path(@event_image)
+'|
+= link_to 'Back', event_images_path

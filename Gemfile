@@ -63,3 +63,7 @@ gem 'bootstrap3-datetimepicker-rails', '~> 3.1.3'
 gem 'bootstrap-select-rails'
 #pagination
 gem 'will_paginate', '~> 3.0.6'
+#image picker
+gem 'image-picker-rails'
+#remotipart
+gem 'remotipart', '~> 1.2'

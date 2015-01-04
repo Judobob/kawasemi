@@ -1,0 +1,11 @@
+$("ul.errors").html("")
+<% if @event_image.errors.any? %>
+  <% @event_image.errors.full_messages.each do |message| %>
+    $("ul.errors").append($("<li/>").html("<%= message.html_safe %>"))
+  <% end %>
+<% else %> 
+  $("#event_time_exercise_time_image_event_id").append('<option value="<%= @event_image.id %>" data-img-src="<%= @event_image.event_image %>"><%= @event_image.alt_text %></option>');
+  $('[id=event_time_exercise_time_image_event_id]').val( "<%= @event_image.id %>" )
+  $("#ajax-modal").modal('hide')
+  $('select').imagepicker();
+<% end %>

@@ -1,0 +1,29 @@
+ul.errors
+= simple_form_for(@event_image , :remote => true , html: {multipart: true}  ) do |f|
+  = f.error_notification
+  = form_authenticity_token
+  .form-inputs
+    .row
+      .form-group
+        = f.label :alt_text, class: "col-sm-2 control-label"
+        .col-sm-6
+          = f.input_field :alt_text, class: "form-control"
+	.row
+      .form-group
+        = f.label :description, class: "col-sm-2 control-label"
+        .col-sm-6
+          = f.input_field :description, class: "form-control"	
+	.row
+      .form-group
+        = f.label :event_image_thumb, class: "col-sm-2 control-label"
+        .col-sm-6
+          = f.input_field :event_image_thumb, class: "form-control"	
+	.row
+      .form-group
+        = f.label :event_image, class: "col-sm-2 control-label"
+        .col-sm-6
+          = f.input_field :event_image, class: "form-control"	
+    .row
+      .form-group
+        .col-sm-offset-2.col-sm-6
+          = f.submit "Submit", class: "btn btn-primary"

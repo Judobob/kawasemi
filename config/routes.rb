@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :event_images
+
   mount Ckeditor::Engine => '/ckeditor'
   resources :user_profiles
 

@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.remotipart
 //= require bootstrap-sprockets
 //= require turbolinks
 //= require jquery.turbolinks
@@ -23,4 +24,5 @@
 //= require bootstrap-select
 //= require bootstrap/alert
 //= require bootstrap/dropdown
+//= require image-picker
 //= require_tree .
